@@ -10,7 +10,6 @@ export default function showcase() {
   // Animate thumbnails reveal
   const section = document.querySelector('.showcase_wrap')
   const thumbnails = document.querySelectorAll('.showcase_img_wrap')
-  // const logos = document.querySelectorAll('.showcase_logo')
 
   const transition = gsap.timeline({
     scrollTrigger: {
@@ -27,33 +26,65 @@ export default function showcase() {
     xPercent: -200,
     scale: 2,
     transformOrigin: '100%, 100%',
+    rotationY: 40,
+    rotationX: 20,
     rotation: 55,
     duration: 0.95,
-    // onComplete: () => {
-    //   gsap.to(logos[0], { opacity: 1, ease: 'power2.out', duration: 0.6 })
-    // },
-    // onReverseComplete: () => {
-    //   gsap.to(logos[0], { opacity: 0, ease: 'power2.out', duration: 0.6 })
-    // }
   })
   .from(thumbnails[1], {
-    y: '-370vh',
+    y: '-400vh',
     xPercent: -50,
+    rotationX: -40,
     scale: 3,
     rotation: -10,
     duration: 1,
-    // ease: 'power1.inOut'
   }, '<')
   .from(thumbnails[2], {
-    y: '-260vh',
+    y: '-240vh',
     xPercent: 200,
+    rotationY: -40,
+    rotationX: 45,
     scale: 1.6,
     rotation: -25,
     duration: 0.92
+  }, '<');
+
+  const transitionOut = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.specialties_wrap',
+      start: 'top 80%',
+      endTrigger: '.showcase_heading_wrap',
+      end: 'bottom 20%',
+      scrub: true,
+    },
+    defaults: { ease: 'power1.inOut' }
+  })
+  transitionOut.to(thumbnails[0], {
+    y: '220vh',
+    xPercent: -160,
+    scale: 1.4,
+    transformOrigin: '100%, 100%',
+    rotation: 55,
+    duration: 0.9,
+  })
+  .to(thumbnails[1], {
+    y: '215vh',
+    scale: 3,
+    rotation: -20,
+    duration: 1,
   }, '<')
+  .to(thumbnails[2], {
+    y: '180vh',
+    xPercent: 155,
+    scale: 1.8,
+    rotation: -80,
+    duration: 0.8
+  }, '<')
+  .set(thumbnails, { autoAlpha: 0 })
 
   // Header and paragraph reveal
   const header = new SplitType('#showcase', { types: 'words, chars' })
+
   gsap.from(header.chars, {
     scaleY: 0,
     transformOrigin: '0% 100%',
@@ -71,6 +102,7 @@ export default function showcase() {
 
   const paragraph = section.querySelector('.g_paragraph')
   const paraSplit = new SplitType(paragraph, { types: 'words, lines' })
+
   gsap.set(paraSplit.lines[0], { x: '5ch' })
   gsap.from(paraSplit.lines, {
     yPercent: 100,
@@ -87,7 +119,7 @@ export default function showcase() {
 
   // Parallax items
   const items = document.querySelectorAll('.showcase_item')
-  const speeds = [0.9, 0.7, 0.8];
+  const speeds = [0.9, 0.75, 0.8];
 
   items.forEach((thumbnail, index) => {
     if (speeds[index] !== undefined) {
