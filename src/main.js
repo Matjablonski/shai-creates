@@ -1,8 +1,10 @@
-import animateTitle from './features/animateTitle'
-import createBadge from './features/createBasge'
+import cursor from './components/cursor.js'
+import showcase from './components/showcase.js'
+import specialties from './components/specialties.js'
+import lenis from './utils/lenis.js'
 import './styles/style.css'
 
-console.log('Welcome to Vite + JS + Webflow!')
-
-createBadge()
-animateTitle()
+lenis()
+showcase()
+specialties()
+cursor()
