@@ -42,8 +42,8 @@ export default function showcase() {
   .from(thumbnails[2], {
     y: '-240vh',
     xPercent: 200,
-    rotationY: -40,
-    rotationX: 45,
+    rotationY: -10,
+    // rotationX: 15,
     scale: 1.6,
     rotation: -25,
     duration: 0.92

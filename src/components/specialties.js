@@ -13,7 +13,6 @@ export default function specialties() {
 
   const section = document.querySelector('.specialties_wrap')
   const cardsWrap = document.querySelector('.showcase_cards_wrap')
-  cardsWrap.classList.add('u-hflex-left-top')
 
   // Header and paragraph reveal
   const header = section.querySelector('.g_heading')
@@ -38,67 +37,71 @@ export default function specialties() {
   identity()
   execution()
 
-  // Horizontal scroll
-  let sections = gsap.utils.toArray('.card_item_wrap');
-  let container = document.querySelector('.showcase_cards_wrap');
+  // ALTERNATIVE
+  const slides = gsap.utils.toArray('.card_item_wrap')
+  const slideWidth = slides[0].clientWidth;
+  const slidesAmount = slides.length - 1
+  const space = (cardsWrap.clientWidth - slideWidth) / slidesAmount
+  const triggers = gsap.utils.toArray('.showcase_trigger')
 
-  let scrollTween = gsap.to(sections, {
-    //xPercent: -100 * (sections.length - 1),
-    x: -(container.scrollWidth - container.clientWidth),
-    ease: "none",
-    scrollTrigger: {
-      trigger: '.showcase_cards_wrap',
-      pin: true,
-      scrub: true,
-      //end: "+=3000"
-      end: `+=${container.scrollWidth}`
-    }
+  // Pin
+  ScrollTrigger.create({
+    trigger: '.showcase_cards_wrap',
+    start: 'top top',
+    endTrigger: section,
+    end: 'bottom bottom',
+    pin: true,
+    pinSpacing: false,
   })
 
-  sections.forEach( section => {
+  const settings = {
+    start: 'top bottom',
+    end: 'bottom bottom',
+    scrub: 0.5,
+  };
 
-    if (!section[0]) {
+  slides.forEach( (slide, index) => {
 
-      gsap.from(section.querySelector('.card_item'), {
-        xPercent: -70,
-        scale: 0.9,
-        transformOrigin: '0% 50%',
-        ease: "none",
+    if (index > 0) {
+
+      // Spread slides in available space
+      gsap.set(slide, { x: `+=${space * index}` });
+
+      // Set scrollTrigger animation for each slide and connect each with corresponding trigger from triggers array
+      gsap.to(slide, {
+        x: 0,
         scrollTrigger: {
-          trigger: section,
-          containerAnimation: scrollTween,
-          start: "left right",
-          end: 'left 20%',
-          scrub: true,
+          trigger: triggers[index - 1],
+          ...settings
+        }
+      })
+
+      gsap.to(slide, {
+        xPercent: -110,
+        rotation: -5,
+        transformOrigin: '80% 80%',
+        scale: 1.1,
+        scrollTrigger: {
+          trigger: triggers[index],
+          ...settings
+        }
+      })
+
+    } else {
+
+      gsap.to(slide, {
+        xPercent: -110,
+        rotation: -5,
+        transformOrigin: '80% 80%',
+        scale: 1.1,
+        scrollTrigger: {
+          trigger: triggers[0],
+          ...settings
         }
       })
 
     }
 
   })
-
-  // function directionalSnap(increment) {
-  // let snapFunc = gsap.utils.snap(increment);
-  //   return (raw, self) => {
-  //     let n = snapFunc(raw);
-  //     return Math.abs(n - raw) < 1e-4 || (n < raw) === self.direction < 0 ? n : self.direction < 0 ? n - increment : n + increment;
-  //   };
-  // }
-
-  // const paragraph = section.querySelector('.g_paragraph')
-  // const paraSplit = new SplitType(paragraph, { types: 'words, lines' })
-  // gsap.set(paraSplit.lines[0], { x: '5ch' })
-  // gsap.from(paraSplit.lines, {
-  //   yPercent: 100,
-  //   autoAlpha: 0,
-  //   duration: 1.4,
-  //   stagger: 0.08,
-  //   ease: 'power2.out',
-  //   scrollTrigger: {
-  //     trigger: paragraph,
-  //     start: 'top 80%',
-  //     toggleActions: 'play none none reverse'
-  //   }
-  // })
 
 }
