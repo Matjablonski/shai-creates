@@ -32,6 +32,20 @@ export default function specialties() {
     }
   })
 
+  // Paragraph
+  const subheaders = section.querySelectorAll('.g_subheader')
+  gsap.from(subheaders, {
+    yPercent: 110,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'circ.out',
+    scrollTrigger: {
+      trigger: header,
+      start: 'center center',
+      toggleActions: 'play none none reverse'
+    }
+  })
+
   // SVG animations
   core()
   identity()

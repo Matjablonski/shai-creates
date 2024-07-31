@@ -1,7 +1,8 @@
 import gsap from "gsap"
+import { Flip } from "gsap/Flip"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, Flip)
 
 export default function footer() {
 
@@ -30,5 +31,29 @@ export default function footer() {
     duration: 0.6,
     scale: 0.9
   })
+
+  // Flip contact images
+  const images = document.querySelectorAll('.contact_image')
+  console.log(images)
+  const navWrap = document.querySelector('.connect_images_wrap')
+  const state = Flip.getState(images)
+
+  images.forEach(image => {
+    navWrap.appendChild(image)
+    image.classList.add('is-large')
+  })
+
+  Flip.from(state, {
+    scrollTrigger: {
+      trigger: '.showcase_trigger.is-last',
+      start: 'top bottom',
+      endTrigger: '.footer_wrap',
+      end: 'bottom bottom',
+      scrub: true,
+      absolute: true,
+      zIndex: 999
+    },
+    scale: true
+  });
 
 }
