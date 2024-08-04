@@ -1,10 +1,10 @@
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SplitType from 'split-type'
 
-import core from "../utils/core"
-import execution from "../utils/execution"
-import identity from "../utils/identity"
+import core from '../utils/core'
+import execution from '../utils/execution'
+import identity from '../utils/identity'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -51,68 +51,69 @@ export default function specialties() {
   identity()
   execution()
 
-  // ALTERNATIVE
   const slides = gsap.utils.toArray('.card_item_wrap')
-  const slideWidth = slides[0].clientWidth;
+  const slideWidth = slides[0].clientWidth
   const slidesAmount = slides.length - 1
   const space = (cardsWrap.clientWidth - slideWidth) / slidesAmount
   const triggers = gsap.utils.toArray('.showcase_trigger')
 
-  // Pin
-  ScrollTrigger.create({
-    trigger: '.showcase_cards_wrap',
-    start: 'top top',
-    endTrigger: section,
-    end: 'bottom bottom',
-    pin: true,
-    pinSpacing: false,
-  })
+  // // Pin
+  // ScrollTrigger.create({
+  //   trigger: '.showcase_cards_wrap',
+  //   start: 'top top',
+  //   endTrigger: section,
+  //   end: 'bottom bottom',
+  //   pin: true,
+  //   //pinSpacing: false,
+  // })
 
   const settings = {
     start: 'top bottom',
     end: 'bottom bottom',
     scrub: 0.5,
-  };
+    //markers: true
+  }
 
+  // Stacked Cards Slider
   slides.forEach( (slide, index) => {
 
     if (index > 0) {
 
       // Spread slides in available space
-      gsap.set(slide, { x: `+=${space * index}` });
+      //gsap.set(slide, { x: `+=${space * index}` })
 
-      // Set scrollTrigger animation for each slide and connect each with corresponding trigger from triggers array
-      gsap.to(slide, {
-        x: 0,
-        scrollTrigger: {
-          trigger: triggers[index - 1],
-          ...settings
-        }
-      })
+      // // Set scrollTrigger animation for each slide and connect each with corresponding trigger from triggers array
+      // gsap.to(slide, {
+      //   x: 0,
+      //   scrollTrigger: {
+      //     trigger: triggers[index - 1],
+      //     ...settings
+      //   }
+      // })
 
-      gsap.to(slide, {
-        xPercent: -110,
-        rotation: -5,
-        transformOrigin: '80% 80%',
-        scale: 1.1,
-        scrollTrigger: {
-          trigger: triggers[index],
-          ...settings
-        }
-      })
+      // gsap.to(slide, {
+      //   xPercent: -110,
+      //   rotation: -5,
+      //   transformOrigin: '80% 80%',
+      //   scale: 1.1,
+      //   scrollTrigger: {
+      //     trigger: triggers[index],
+      //     ...settings
+      //   }
+      // })
 
     } else {
 
-      gsap.to(slide, {
-        xPercent: -110,
-        rotation: -5,
-        transformOrigin: '80% 80%',
-        scale: 1.1,
-        scrollTrigger: {
-          trigger: triggers[0],
-          ...settings
-        }
-      })
+      // gsap.to(slide, {
+      //   xPercent: -110,
+      //   rotation: -5,
+      //   transformOrigin: '80% 80%',
+      //   scale: 1.1,
+      //   scrollTrigger: {
+      //     trigger: triggers[0],
+      //     ...settings
+      //   }
+      // })
 
     }
 

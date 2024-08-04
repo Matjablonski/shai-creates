@@ -1,9 +1,15 @@
 import { defineConfig } from 'vite'
 import eslintPlugin from 'vite-plugin-eslint'
+import path from 'path'
 
 // vite.config.js
 export default defineConfig({
-  plugins: [eslintPlugin({ cache: false })],
+  plugins: [
+    eslintPlugin({ 
+      eslintPath: path.resolve(__dirname, 'node_modules/eslint'),
+      cache: false 
+    })
+  ],
   server: {
     host: 'localhost',
     cors: '*',

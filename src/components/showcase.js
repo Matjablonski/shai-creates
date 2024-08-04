@@ -1,5 +1,5 @@
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SplitType from 'split-type'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -47,7 +47,7 @@ export default function showcase() {
     scale: 1.6,
     rotation: -25,
     duration: 0.92
-  }, '<');
+  }, '<')
 
   const transitionOut = gsap.timeline({
     scrollTrigger: {
@@ -119,21 +119,21 @@ export default function showcase() {
 
   // Parallax items
   const items = document.querySelectorAll('.showcase_item')
-  const speeds = [0.9, 0.75, 0.8];
+  const speeds = [0.9, 0.75, 0.8]
 
   items.forEach((thumbnail, index) => {
     if (speeds[index] !== undefined) {
-      thumbnail.setAttribute('data-speed', speeds[index]);
+      thumbnail.setAttribute('data-speed', speeds[index])
     }
   })
 
   gsap.to(items, {
-    y: (i, el) => (1 - parseFloat(el.getAttribute("data-speed"))) * ScrollTrigger.maxScroll(window),
-    ease: "none",
+    y: (i, el) => (1 - parseFloat(el.getAttribute('data-speed'))) * ScrollTrigger.maxScroll(window),
+    ease: 'none',
     scrollTrigger: {
       trigger: '.showcase_collection',
       start: 'top bottom',
-      end: "max",
+      end: 'max',
       invalidateOnRefresh: true,
       scrub: 0,
     }

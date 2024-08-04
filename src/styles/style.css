@@ -17,3 +17,11 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+.form_field:focus ~ .form_button_wrap {
+  margin-right: 0.5rem;
+}
+
+.team_item_name {
+  user-select: none;
+}
