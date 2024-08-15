@@ -14,6 +14,17 @@ export default function specialties() {
   const section = document.querySelector('.specialties_wrap')
   const cardsWrap = document.querySelector('.showcase_cards_wrap')
 
+  // Section colour change
+  gsap.to('body', {
+    backgroundColor: '#0F110F',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top center',
+      end: 'top top',
+      scrub: 0.5
+    }
+  })
+
   // Header and paragraph reveal
   const header = section.querySelector('.g_heading')
   const split = new SplitType(header, { types: 'chars' })
