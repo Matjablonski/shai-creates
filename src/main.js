@@ -8,12 +8,20 @@ import team from './components/team'
 import lenis from './utils/lenis'
 import './styles/style.css'
 
-lenis()
-cursor()
-showcase()
-specialties()
-team()
-footer()
+try {
 
-ScrollTrigger.sort()
-ScrollTrigger.refresh()
+  lenis()
+  cursor()
+  showcase()
+  specialties()
+  team()
+  footer()
+
+  ScrollTrigger.sort()
+  ScrollTrigger.refresh()
+
+} catch (error) {
+
+  console.error('Error initializing components:', error)
+  
+}

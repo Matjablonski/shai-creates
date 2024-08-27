@@ -23,26 +23,26 @@ export default function showcase() {
   })
   transition.from(thumbnails[0], {
     y: '-260vh',
-    xPercent: -200,
+    x: '-50vw',
     scale: 2,
     transformOrigin: '100%, 100%',
-    rotationY: 40,
-    rotationX: 20,
+    //rotationY: 40,
+    //rotationX: 20,
     rotation: 55,
     duration: 0.95,
   })
   .from(thumbnails[1], {
     y: '-400vh',
-    xPercent: -50,
-    rotationX: -40,
+    x: '-100vw',
+    //rotationX: -40,
     scale: 3,
     rotation: -10,
     duration: 1,
   }, '<')
   .from(thumbnails[2], {
     y: '-240vh',
-    xPercent: 200,
-    rotationY: -10,
+    x: '-120vw',
+    //rotationY: -10,
     // rotationX: 15,
     scale: 1.6,
     rotation: -25,
